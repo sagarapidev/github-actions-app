@@ -21,8 +21,7 @@ on:
     branches: [ "main" ]
     paths-ignore: 
       - 'docs/**'
-  schedule:
-    - cron: '44 20 * * 0'
+
 
 permissions:
   actions: read
