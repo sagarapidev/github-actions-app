@@ -1,0 +1,22 @@
+{
+  "name": "github-actions-app",
+  "version": "1.0.0",
+  "description": "github-codeql-action",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sagarapidev/github-actions-app.git"
+  },
+  "author": "sagar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sagarapidev/github-actions-app/issues"
+  },
+  "homepage": "https://github.com/sagarapidev/github-actions-app#readme"
+}
