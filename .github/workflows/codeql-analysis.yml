@@ -3,6 +3,8 @@ name: "CodeQL"
 on:
   push:
     branches: [ "master" ]
+    paths: 
+      - 'docs/**'
   pull_request:
     branches: [ "master" ]
   schedule:
@@ -36,17 +38,12 @@ jobs:
         uses: github/codeql-action/autobuild@v3
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
-        with:
-          category: "/language:${{ matrix.language }}"
+        run: |
+          codeql analyze --language=${{ matrix.language }} --format=sarif-latest -o codeql-results.sarif --disable telemetry
         env:
           EXCLUDED_PATH: "docs/"
-
-      - name: Exclude "docs" directory from results
-        run: |
-          codeql bqrs decode --format=sarif-latest --output=codeql-results.sarif codeql-bqrs-results/ --filter="not file.startsWith('$EXCLUDED_PATH')"
 
       - name: Upload SARIF results
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: codeql-results.sarif
+          sarif_file: codeql-results.sarif    
