@@ -39,7 +39,7 @@ jobs:
         run: |
           ./codeql analyze --language=${{ matrix.language }} --format=sarif-latest -o codeql-results.sarif --disable telemetry
         env:
-          EXCLUDED_PATH: "docs/"
+          EXCLUDED_PATHS: "docs/"  # Corrected variable name
 
       - name: Upload SARIF results
         uses: github/codeql-action/upload-sarif@v3
