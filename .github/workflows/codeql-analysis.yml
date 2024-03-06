@@ -32,15 +32,16 @@ jobs:
         with:
           languages: ${{ matrix.language }}
 
-          # Add custom queries
-          queries: security-extended,security-and-quality
-
       - name: Autobuild
         uses: github/codeql-action/autobuild@v3
-        with:
-          exclude: "docs/**"
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
         with:
           category: "/language:${{matrix.language}}"
+        env:
+          EXCLUDED_PATH: "docs/"
+
+      - name: Exclude "docs" directory from results
+        run: |
+          codeql bqrs decode --format=sarif-latest --output=codeql-results.sarif codeql-bqrs-results/ --filter="not file.startsWith('$EXCLUDED_PATH')"
